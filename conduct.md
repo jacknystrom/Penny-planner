@@ -46,3 +46,5 @@ If a member consistently violates code of conduct, team will decide on appropria
 
 
 ![Genevieve's Signiture.](https://github.com/jacknystrom/Penny-planner/blob/main/src/Gen's%20signiture.png)
+
+![Jack's Signature.](https://github.com/jacknystrom/Penny-planner/blob/main/src/signature.png)

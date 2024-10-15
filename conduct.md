@@ -50,7 +50,7 @@ No distracted use of phones or other technology at group meetings.
 
 ![Genevieve's Signiture.](https://github.com/jacknystrom/Penny-planner/blob/main/src/Gen's%20signiture.png)
 
-![Jack's Signature.](https://github.com/jacknystrom/Penny-planner/blob/main/src/signature.png)
+![Jack's Signature.](https://github.com/jacknystrom/Penny-planner/blob/main/src/JackSignature.png)
 
 ![Anthony's Signature.](https://github.com/jacknystrom/Penny-planner/blob/main/src/signatureAnthony.png)
 

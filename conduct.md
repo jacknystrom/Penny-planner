@@ -43,6 +43,9 @@ Enforcement/ Feedback
 All feedback should be constructive and aimed to improve team dynamics and development.
 If a member consistently violates code of conduct, team will decide on appropriate measures.
 
+Phone Policy
+No distracted use of phones or other technology at group meetings.
+
 
 
 ![Genevieve's Signiture.](https://github.com/jacknystrom/Penny-planner/blob/main/src/Gen's%20signiture.png)
@@ -50,4 +53,6 @@ If a member consistently violates code of conduct, team will decide on appropria
 ![Jack's Signature.](https://github.com/jacknystrom/Penny-planner/blob/main/src/signature.png)
 
 ![Anthony's Signature.](https://github.com/jacknystrom/Penny-planner/blob/main/src/signatureAnthony.png)
+
+![Tyler's Signature.](https://github.com/jacknystrom/Penny-planner/blob/main/src/signaturetp.png)
 

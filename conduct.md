@@ -56,3 +56,5 @@ No distracted use of phones or other technology at group meetings.
 
 ![Tyler's Signature.](https://github.com/jacknystrom/Penny-planner/blob/main/src/signaturetp.png)
 
+![Snaha's Signiture.](https://github.com/jacknystrom/Penny-planner/blob/main/src/snahasignature.png)
+

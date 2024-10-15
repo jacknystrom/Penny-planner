@@ -36,7 +36,7 @@ As long as the group is informed about lateness it is a non issue.
 
 
 Conversational Courtesies
-All members will be kind and attentive to the other members.
+All members will be kind and attentive to the other members. Members will refrain from using their phones at meetings
 
 
 Enforcement/ Feedback

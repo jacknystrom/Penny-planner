@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "693168869251",
+    "project_id": "penny-planner-4e5e6",
+    "storage_bucket": "penny-planner-4e5e6.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:693168869251:android:42a6890665dc686e9bf0b6",
+        "android_client_info": {
+          "package_name": "com.mycompany.pennyplanner"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDVdO3nI5eA_bD6c8zo_BO5qyhONXDf0GQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

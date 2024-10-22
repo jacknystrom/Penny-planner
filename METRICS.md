@@ -1,5 +1,10 @@
 - NPS
+    -
 - Adoption
+    -
 - DAU
-- Retention 
+    -
+- Retention
+    -
 - CTR
+    -

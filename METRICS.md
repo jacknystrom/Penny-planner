@@ -7,7 +7,7 @@
 - WAU
     - Users login Weekly
 - Retention
-    - 
+    - Users return to app regularly and engage with more challenges
 - CTR
     -
 

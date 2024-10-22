@@ -3,9 +3,9 @@
 - Adoption
     -
 - DAU
-    -
+    - Users login Daily
 - WAU
-    -
+    - Users login Weekly
 - Retention
     -
 - CTR

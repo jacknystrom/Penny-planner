@@ -1,5 +1,5 @@
-NPS
-Adoption
-DAU
-Retention 
-CTR
+- NPS
+- Adoption
+- DAU
+- Retention 
+- CTR

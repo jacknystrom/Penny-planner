@@ -1,13 +1,13 @@
 - NPS
     -
 - Adoption
-    -
+    - User setting up a new account
 - DAU
     - Users login Daily
 - WAU
     - Users login Weekly
 - Retention
-    -
+    - 
 - CTR
     -
 

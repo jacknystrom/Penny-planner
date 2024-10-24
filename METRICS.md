@@ -11,4 +11,4 @@ https://docs.google.com/presentation/d/1y1S6vdvaRwDhp6QnIaDtn34y0u3w5dYQNfRk-dfZ
 - Retention
     - Users return to app regularly and engage with more challenges
 - CTR
-    - 
+    - Finish onboarding process

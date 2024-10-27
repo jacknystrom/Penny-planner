@@ -2,7 +2,7 @@
 
 ## A/B Test 1: Round-Up Savings - Automatic vs. Customizable Round-Up Amount (Anthony)
 
-**User Story Number:** US6 (AB Testing)
+**User Story Number:** US7 (AB Testing)
 
 **Metrics:**
 - Happiness: User satisfaction with the round-up feature.
@@ -33,7 +33,7 @@ We are trying to find the most effective method for encouraging users to save mo
 
 ## A/B Test 2: Light vs Dark screen (Genevieve)
 
-**User Story Number:** US6 (AB Testing)
+**User Story Number:** US7 (AB Testing)
 
 **Metrics:**
 - Happiness: User satisfaction with dark screen vs light screen.

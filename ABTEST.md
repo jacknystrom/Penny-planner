@@ -56,3 +56,29 @@ Users may experience eye strain, especially during extended app usage, which can
 **Variations:**
 - **Variation A:** Users are given a dark screen mode
 - **Variation B:** Users are given a light screen mode
+
+
+## A/B Test 3: Savings Reminder Timing (Snaha)
+
+**User Story Number:** US7 (AB Testing)
+
+**Metrics:**
+- Engagement: Frequency with which users engage with the reminder notification (e.g., open rate, click-through rate).
+- Conversion: Percentage of users who make a deposit or add to their savings after receiving a reminder.
+- Retention: How consistently users respond to reminders over time (daily, weekly).
+- Opt-Out Rate: Number of users who disable reminders over time, possibly due to timing preference.
+
+**Hypothesis:**
+Users are more likely to engage with the app and complete a savings deposit when reminded during optimal times. Morning reminders may prompt saving as part of the start-of-day routine, while evening reminders may encourage saving leftover funds from daily expenses.
+
+**Problem:**
+Identifying the optimal time to send savings reminders can maximize user engagement and deposit rates while avoiding notification fatigue. Without testing, reminders could disrupt users’ routines, leading to higher opt-out rates and decreased engagement.
+
+**Experiment:**
+- **Audience:** Split the user base equally, with 50% of users in Group A (morning reminders) and 50% in Group B (evening reminders).
+- **Tracking:**
+- **HEART Metrics:** Track engagement, conversion, retention, and opt-out rate metrics using Firebase Analytics or another analytics tool to assess the impact of reminder timing on user behavior.
+
+**Variations:**
+- **Variation A:** Users receive savings reminders in the morning (e.g., 8:00 AM).
+- **Variation B:** Users receive savings reminders in the evening (e.g., 6:00 PM).

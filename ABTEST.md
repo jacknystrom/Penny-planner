@@ -31,7 +31,7 @@ We are trying to find the most effective method for encouraging users to save mo
 - **Variation B:** Users can choose their round-up amount ($1, $5, or $10).
 
 
-## A/B Test 2: Light vs Dark screen (Genevieve)
+## A/B Test 2: Light vs Dark mode (Genevieve)
 
 **User Story Number:** US7 (AB Testing)
 

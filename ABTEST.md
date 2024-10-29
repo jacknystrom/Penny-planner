@@ -88,23 +88,22 @@ Identifying the optimal time to send savings reminders can maximize user engagem
 User Story Number: US7 (AB Testing)
 
 **Metrics:**
+- Engagement: Rate of interaction with the UI elements, such as button clicks, form submissions, or navigation.
+- Session Duration: Average time users spend within the app or specific screens after interacting with the design.
+- Conversion Rate: Percentage of users who complete a targeted action, such as making a purchase or signing up.
+- Bounce Rate: Percentage of users who leave the app or screen without interacting.
 
-- **Engagement: Rate of interaction with the UI elements, such as button clicks, form submissions, or navigation.
-- **Session Duration: Average time users spend within the app or specific screens after interacting with the design.
-- **Conversion Rate: Percentage of users who complete a targeted action, such as making a purchase or signing up.
-- **Bounce Rate: Percentage of users who leave the app or screen without interacting.
+**Hypothesis:**
+A more detailed design, featuring drop shadows and subtle gradients, may increase user engagement and interaction by creating a more visually appealing and intuitive interface. However, a flat design may streamline the user experience and reduce visual clutter, potentially resulting in faster navigation and higher completion rates for target actions.
 
-Hypothesis: A more detailed design, featuring drop shadows and subtle gradients, may increase user engagement and interaction by creating a more visually appealing and intuitive interface. However, a flat design may streamline the user experience and reduce visual clutter, potentially resulting in faster navigation and higher completion rates for target actions.
-
-Problem: Deciding between a flat design and a detailed design with added depth is challenging without data on user preferences. Overly simplistic designs could impact the perceived quality of the app, while intricate designs could slow performance or distract users, leading to decreased conversion rates.
+**Problem:**
+Deciding between a flat design and a detailed design with added depth is challenging without data on user preferences. Overly simplistic designs could impact the perceived quality of the app, while intricate designs could slow performance or distract users, leading to decreased conversion rates.
 
 **Experiment:**
-
-- **Audience: Randomly split users into two equal groups, with 50% assigned to Group A (Flat Design) and 50% to Group B (Detailed Design).
-- **Tracking:
-- **HEART Metrics: Use Google Analytics, Firebase, or Mixpanel to monitor engagement, session duration, conversion rate, and bounce rate. These metrics will help assess which design approach best supports usability and user interaction.
+- Audience: Randomly split users into two equal groups, with 50% assigned to Group A (Flat Design) and 50% to Group B (Detailed Design).
+- Tracking:
+- HEART Metrics: Use Google Analytics, Firebase, or Mixpanel to monitor engagement, session duration, conversion rate, and bounce rate. These metrics will help assess which design approach best supports usability and user interaction.
 
 **Variations:**
-
-- **Variation A: Flat design UI elements with minimal detail, no drop shadows, and a focus on simplicity and functionality. Runs with users before 6:00 PM
-- **Variation B: Detailed design UI elements with drop shadows, gradients, and additional visual depth for a more polished, interactive appearance. Runs with users after 6:00 PM
+- **Variation A:** Flat design UI elements with minimal detail, no drop shadows, and a focus on simplicity and functionality. Runs with users before 6:00 PM
+- **Variation B:** Detailed design UI elements with drop shadows, gradients, and additional visual depth for a more polished, interactive appearance. Runs with users after 6:00 PM

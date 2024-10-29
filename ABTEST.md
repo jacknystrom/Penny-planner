@@ -83,9 +83,9 @@ Identifying the optimal time to send savings reminders can maximize user engagem
 - **Variation A:** Users receive savings reminders in the morning (e.g., 8:00 AM).
 - **Variation B:** Users receive savings reminders in the evening (e.g., 6:00 PM).
 
-##A/B Test 4: Flat Design vs. Detailed Design (UI Elements) (Tyler Palmer)
+## A/B Test 4:Flat Design vs. Detailed Design (UI Elements) (Tyler Palmer)
 
-User Story Number: US12 (AB Testing)
+User Story Number: US7 (AB Testing)
 
 **Metrics:**
 

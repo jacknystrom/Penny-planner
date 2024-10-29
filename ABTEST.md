@@ -105,8 +105,8 @@ Deciding between a flat design and a detailed design with added depth is challen
 - HEART Metrics: Use Google Analytics, Firebase, or Mixpanel to monitor engagement, session duration, conversion rate, and bounce rate. These metrics will help assess which design approach best supports usability and user interaction.
 
 **Variations:**
-- **Variation A:** Flat design UI elements with minimal detail, no drop shadows, and a focus on simplicity and functionality. Runs with users before 6:00 PM
-- **Variation B:** Detailed design UI elements with drop shadows, gradients, and additional visual depth for a more polished, interactive appearance. Runs with users after 6:00 PM
+- **Variation A:** Flat design UI elements with minimal detail, no drop shadows, and a focus on simplicity and functionality.
+- **Variation B:** Detailed design UI elements with drop shadows, gradients, and additional visual depth for a more polished, interactive appearance. 
 
 ## A/B Test 5: Linear Progress bar vs Circular Progress bar (Jack)
 **User Story Number:** US7 (AB Testing)

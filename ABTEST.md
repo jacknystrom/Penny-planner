@@ -1,34 +1,34 @@
 # A/B Test Descriptions
 
-## A/B Test 1: Round-Up Savings - Automatic vs. Customizable Round-Up Amount (Anthony)
+## A/B Test: Automatic vs. Customizable Round-Up Savings
 
-**User Story Number:** US7 (AB Testing)
+**User Story Number:** US7 (A/B Testing)
 
 **Metrics:**
-- Happiness: User satisfaction with the round-up feature.
-- Engagement: The frequency of feature usage.
-- Adoption: The number of users who enable the round-up feature.
-- Retention: How often users return to the feature over time.
-- Task Success: The amount of money users save using the feature.
+- **Happiness:** User satisfaction with each round-up method.
+- **Engagement:** Frequency of round-up feature usage.
+- **Adoption:** Number of users who enable the round-up feature.
+- **Retention:** Frequency of users returning to use the round-up feature.
+- **Task Success:** Total amount saved by users with the feature.
 
 **Hypothesis:**
-Test A (Automatic Round-Up) will lead to higher consistency of use, while Test B (Customizable Round-Up) will result in higher total savings amounts. Users in Test A are expected to engage more regularly, while users in Test B are expected to save more per transaction but may use the feature less consistently.
+Users with **Automatic Round-Up** (Variation A) will use the feature more consistently, leading to higher engagement. In contrast, users with **Customizable Round-Up** (Variation B) will likely save higher amounts per transaction but may use the feature less frequently.
 
 **Problem:**
-We are trying to find the most effective method for encouraging users to save money consistently. The impact of this problem is high as it can improve both feature adoption and user retention.
+Identify the most effective round-up method to encourage consistent user savings, aiming to boost both feature adoption and long-term retention.
 
-**Experiment:**
-- **Audience:** 50% of users will experience Test A (automatic round-up to the nearest dollar), and 50% will experience Test B (customizable round-up with options of $1, $5, or $10).
-- **Tracking:** 
-  - Track feature enablement.
-  - Track frequency of round-up usage.
+**Experiment Setup:**
+- **Audience:** Randomly assign 50% of users to Variation A (automatic round-up to the nearest dollar) and 50% to Variation B (customizable round-up options of $1, $5, or $10).
+- **Tracking:**
+  - Track feature enablement rate.
+  - Track usage frequency.
   - Track total savings per user.
-  - Monitor user feedback through surveys post-interaction.
-- **HEART Metrics:** Utilize Firebase Analytics to track happiness, engagement, adoption, retention, and task success.
+  - Collect user feedback through post-interaction surveys.
+- **HEART Metrics:** Use Firebase Analytics to measure happiness, engagement, adoption, retention, and task success.
 
 **Variations:**
-- **Variation A:** Users experience automatic round-up to the nearest dollar.
-- **Variation B:** Users can choose their round-up amount ($1, $5, or $10).
+- **Variation A (Automatic Round-Up):** Users have transactions automatically rounded up to the nearest dollar.
+- **Variation B (Customizable Round-Up):** Users select their preferred round-up amount from options of $1, $5, or $10.
 
 
 ## A/B Test 2: Light vs Dark mode (Genevieve)

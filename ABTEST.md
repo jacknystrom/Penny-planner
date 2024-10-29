@@ -108,20 +108,25 @@ Deciding between a flat design and a detailed design with added depth is challen
 - **Variation A:** Flat design UI elements with minimal detail, no drop shadows, and a focus on simplicity and functionality. Runs with users before 6:00 PM
 - **Variation B:** Detailed design UI elements with drop shadows, gradients, and additional visual depth for a more polished, interactive appearance. Runs with users after 6:00 PM
 
-- ##A/B Test 4: Default Progress Bar (Jack)**
+## A/B Test 2: Linear Progress bar vs Circular Progress bar (Jack)
 **User Story Number:** US7 (AB Testing)
+  
 **Metrics**:
 -Happiness: User Satisfaction with Linear vs Circular progress bar
 -Engagement: Frequency of challenge creation and task updating between both bar types
 -Adoption: The Number of new users of group A(linear) and group B(Circular)
 -Retention: How often signed up users return to Group A vs Group be in a 7 day time frame
 -Task Success: How often people complete challenges with the Linear progress bar vs the circular progress bar
--Hypothesis: The circular progress bar will Display the users progress in a more appealing and immediately understandable way, creating higher task completion,   --retention, user satisfaction, and engagement.
+
+**Hypothesis:** The circular progress bar will Display the users progress in a more appealing and immediately understandable way, creating higher task completion,   -retention, user satisfaction, and engagement.
 
 **Experiment**:
 Audience: 50% of users will experience Test A (Linear progress bar), and 50% will experience Test B (Circular progress bar).
+
 **Tracking:**
+
 **HEART Metrics:** Utilize Firebase Analytics to track happiness, engagement, adoption, retention, and task success.
+
 ***Variations:**
 -Variation A: Users are given Challenges with progress displayed as a linear progress bar
 -Variation B: Users are Challenges with progress displayed as a Circular progress

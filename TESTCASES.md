@@ -1,5 +1,5 @@
 US1: User Account Creation
- - Anthony Francisco: https://docs.google.com/presentation/d/14hX3piGEjpV2C4do9N9nDxlXsX2H4mkNzg-mVh-bOCA/edit?usp=sharing
+ - Anthony Francisco: [https://docs.google.com/presentation/d/14hX3piGEjpV2C4do9N9nDxlXsX2H4mkNzg-mVh-bOCA/edit?usp=sharing](https://docs.google.com/presentation/d/1iOPjUXw38YnWrwO1UfFmNDuGnWeWuzGDy2o10waLz34/edit?usp=sharing)
 
 US2: User Login
 

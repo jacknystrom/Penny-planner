@@ -5,8 +5,8 @@ import '../base_auth_user_provider.dart';
 
 export '../base_auth_user_provider.dart';
 
-class PennyPlannerFirebaseUser extends BaseAuthUser {
-  PennyPlannerFirebaseUser(this.user);
+class BrokeLessFirebaseUser extends BaseAuthUser {
+  BrokeLessFirebaseUser(this.user);
   User? user;
   @override
   bool get loggedIn => user != null;
@@ -33,6 +33,11 @@ class PennyPlannerFirebaseUser extends BaseAuthUser {
   }
 
   @override
+  Future? updatePassword(String newPassword) async {
+    await user?.updatePassword(newPassword);
+  }
+
+  @override
   Future? sendEmailVerification() => user?.sendEmailVerification();
 
   @override
@@ -55,17 +60,17 @@ class PennyPlannerFirebaseUser extends BaseAuthUser {
   static BaseAuthUser fromUserCredential(UserCredential userCredential) =>
       fromFirebaseUser(userCredential.user);
   static BaseAuthUser fromFirebaseUser(User? user) =>
-      PennyPlannerFirebaseUser(user);
+      BrokeLessFirebaseUser(user);
 }
 
-Stream<BaseAuthUser> pennyPlannerFirebaseUserStream() => FirebaseAuth.instance
+Stream<BaseAuthUser> brokeLessFirebaseUserStream() => FirebaseAuth.instance
         .authStateChanges()
         .debounce((user) => user == null && !loggedIn
             ? TimerStream(true, const Duration(seconds: 1))
             : Stream.value(user))
         .map<BaseAuthUser>(
       (user) {
-        currentUser = PennyPlannerFirebaseUser(user);
+        currentUser = BrokeLessFirebaseUser(user);
         return currentUser!;
       },
     );

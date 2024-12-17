@@ -24,6 +24,7 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
     super.initState();
     _model = createModel(context, () => SignuppageModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'signuppage'});
     _model.emailTextController ??= TextEditingController();
     _model.emailFocusNode ??= FocusNode();
 
@@ -32,6 +33,8 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
 
     _model.confirmPasswordTextController ??= TextEditingController();
     _model.confirmPasswordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -44,7 +47,10 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -73,7 +79,12 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                     width: 400.0,
                     height: 500.0,
                     decoration: BoxDecoration(
-                      color: const Color(0xFFBBBBBB),
+                      gradient: const LinearGradient(
+                        colors: [Color(0xFF8CB297), Color(0xFF639B74)],
+                        stops: [0.0, 1.0],
+                        begin: AlignmentDirectional(0.0, -1.0),
+                        end: AlignmentDirectional(0, 1.0),
+                      ),
                       borderRadius: BorderRadius.circular(24.0),
                     ),
                     child: Column(
@@ -82,6 +93,7 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                         SizedBox(
                           width: 200.0,
                           child: TextFormField(
+                            key: const ValueKey('Email_j9ij'),
                             controller: _model.emailTextController,
                             focusNode: _model.emailFocusNode,
                             autofocus: false,
@@ -90,9 +102,9 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                               isDense: true,
                               labelText: 'Email',
                               labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                                  .titleSmall
                                   .override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Inter Tight',
                                     letterSpacing: 0.0,
                                   ),
                               hintText: ' ',
@@ -149,6 +161,7 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                         SizedBox(
                           width: 200.0,
                           child: TextFormField(
+                            key: const ValueKey('Password_960t'),
                             controller: _model.passwordTextController,
                             focusNode: _model.passwordFocusNode,
                             autofocus: false,
@@ -157,9 +170,9 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                               isDense: true,
                               labelText: 'Password',
                               labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                                  .titleSmall
                                   .override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Inter Tight',
                                     letterSpacing: 0.0,
                                   ),
                               hintText: ' ',
@@ -229,6 +242,7 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                         SizedBox(
                           width: 200.0,
                           child: TextFormField(
+                            key: const ValueKey('ConfirmPassword_zf9g'),
                             controller: _model.confirmPasswordTextController,
                             focusNode: _model.confirmPasswordFocusNode,
                             autofocus: false,
@@ -237,9 +251,9 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                               isDense: true,
                               labelText: 'Confirm Password',
                               labelStyle: FlutterFlowTheme.of(context)
-                                  .labelMedium
+                                  .titleSmall
                                   .override(
-                                    fontFamily: 'Inter',
+                                    fontFamily: 'Inter Tight',
                                     letterSpacing: 0.0,
                                   ),
                               hintText: ' ',
@@ -309,6 +323,11 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                         ),
                         FFButtonWidget(
                           onPressed: () async {
+                            logFirebaseEvent(
+                                'SIGNUPAlreadyHaveAnAccount_ON_TAP');
+                            logFirebaseEvent(
+                                'AlreadyHaveAnAccount_navigate_to');
+
                             context.goNamed('login');
                           },
                           text: 'Already Have An Account?',
@@ -318,7 +337,7 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                                 16.0, 0.0, 16.0, 0.0),
                             iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFFBBBBBB),
+                            color: const Color(0xC1FFFFFF),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -326,12 +345,15 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                                   color: FlutterFlowTheme.of(context).primary,
                                   letterSpacing: 0.0,
                                 ),
-                            elevation: 0.0,
+                            elevation: 5.0,
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),
                         FFButtonWidget(
+                          key: const ValueKey('SignUp_6uxr'),
                           onPressed: () async {
+                            logFirebaseEvent('SIGNUPPAGE_PAGE_SignUp_ON_TAP');
+                            logFirebaseEvent('SignUp_auth');
                             GoRouter.of(context).prepareAuthEvent();
                             if (_model.passwordTextController.text !=
                                 _model.confirmPasswordTextController.text) {
@@ -362,6 +384,8 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                                   createdTime: getCurrentTimestamp,
                                 ));
 
+                            logFirebaseEvent('SignUp_navigate_to');
+
                             context.goNamedAuth('onboarding', context.mounted);
                           },
                           text: 'Sign up',
@@ -371,7 +395,7 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                                 16.0, 0.0, 16.0, 0.0),
                             iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                 0.0, 0.0, 0.0, 0.0),
-                            color: const Color(0xFFCAFFC6),
+                            color: const Color(0xC7FFFFFF),
                             textStyle: FlutterFlowTheme.of(context)
                                 .titleSmall
                                 .override(
@@ -380,10 +404,7 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                                       FlutterFlowTheme.of(context).primaryText,
                                   letterSpacing: 0.0,
                                 ),
-                            elevation: 0.0,
-                            borderSide: const BorderSide(
-                              color: Colors.black,
-                            ),
+                            elevation: 5.0,
                             borderRadius: BorderRadius.circular(8.0),
                           ),
                         ),

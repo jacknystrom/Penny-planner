@@ -60,6 +60,31 @@ class UsersRecord extends FirestoreRecord {
   String get typeOfIncome => _typeOfIncome ?? '';
   bool hasTypeOfIncome() => _typeOfIncome != null;
 
+  // "nps_text_response" field.
+  String? _npsTextResponse;
+  String get npsTextResponse => _npsTextResponse ?? '';
+  bool hasNpsTextResponse() => _npsTextResponse != null;
+
+  // "nps_score" field.
+  double? _npsScore;
+  double get npsScore => _npsScore ?? 0.0;
+  bool hasNpsScore() => _npsScore != null;
+
+  // "nps" field.
+  bool? _nps;
+  bool get nps => _nps ?? false;
+  bool hasNps() => _nps != null;
+
+  // "accesToken" field.
+  String? _accesToken;
+  String get accesToken => _accesToken ?? '';
+  bool hasAccesToken() => _accesToken != null;
+
+  // "userPoints" field.
+  double? _userPoints;
+  double get userPoints => _userPoints ?? 0.0;
+  bool hasUserPoints() => _userPoints != null;
+
   void _initializeFields() {
     _email = snapshotData['email'] as String?;
     _displayName = snapshotData['display_name'] as String?;
@@ -70,6 +95,11 @@ class UsersRecord extends FirestoreRecord {
     _age = castToType<int>(snapshotData['age']);
     _preferredProgressBar = snapshotData['preferred_progress_bar'] as String?;
     _typeOfIncome = snapshotData['type_of_income'] as String?;
+    _npsTextResponse = snapshotData['nps_text_response'] as String?;
+    _npsScore = castToType<double>(snapshotData['nps_score']);
+    _nps = snapshotData['nps'] as bool?;
+    _accesToken = snapshotData['accesToken'] as String?;
+    _userPoints = castToType<double>(snapshotData['userPoints']);
   }
 
   static CollectionReference get collection =>
@@ -115,6 +145,11 @@ Map<String, dynamic> createUsersRecordData({
   int? age,
   String? preferredProgressBar,
   String? typeOfIncome,
+  String? npsTextResponse,
+  double? npsScore,
+  bool? nps,
+  String? accesToken,
+  double? userPoints,
 }) {
   final firestoreData = mapToFirestore(
     <String, dynamic>{
@@ -127,6 +162,11 @@ Map<String, dynamic> createUsersRecordData({
       'age': age,
       'preferred_progress_bar': preferredProgressBar,
       'type_of_income': typeOfIncome,
+      'nps_text_response': npsTextResponse,
+      'nps_score': npsScore,
+      'nps': nps,
+      'accesToken': accesToken,
+      'userPoints': userPoints,
     }.withoutNulls,
   );
 
@@ -146,7 +186,12 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e1?.phoneNumber == e2?.phoneNumber &&
         e1?.age == e2?.age &&
         e1?.preferredProgressBar == e2?.preferredProgressBar &&
-        e1?.typeOfIncome == e2?.typeOfIncome;
+        e1?.typeOfIncome == e2?.typeOfIncome &&
+        e1?.npsTextResponse == e2?.npsTextResponse &&
+        e1?.npsScore == e2?.npsScore &&
+        e1?.nps == e2?.nps &&
+        e1?.accesToken == e2?.accesToken &&
+        e1?.userPoints == e2?.userPoints;
   }
 
   @override
@@ -159,7 +204,12 @@ class UsersRecordDocumentEquality implements Equality<UsersRecord> {
         e?.phoneNumber,
         e?.age,
         e?.preferredProgressBar,
-        e?.typeOfIncome
+        e?.typeOfIncome,
+        e?.npsTextResponse,
+        e?.npsScore,
+        e?.nps,
+        e?.accesToken,
+        e?.userPoints
       ]);
 
   @override

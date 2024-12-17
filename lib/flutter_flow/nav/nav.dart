@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '/auth/base_auth_user_provider.dart';
 
@@ -13,6 +14,8 @@ export 'package:go_router/go_router.dart';
 export 'serialization_util.dart';
 
 const kTransitionInfoKey = '__transition_info__';
+
+GlobalKey<NavigatorState> appNavigatorKey = GlobalKey<NavigatorState>();
 
 class AppStateNotifier extends ChangeNotifier {
   AppStateNotifier._();
@@ -67,18 +70,22 @@ class AppStateNotifier extends ChangeNotifier {
   }
 }
 
-GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
+GoRouter createRouter(AppStateNotifier appStateNotifier, [Widget? entryPage]) =>
+    GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const HomeWidget() : const WelcomeWidget(),
+      navigatorKey: appNavigatorKey,
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? entryPage ?? const LoginWidget()
+          : const WelcomeWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
-          builder: (context, _) =>
-              appStateNotifier.loggedIn ? const HomeWidget() : const WelcomeWidget(),
+          builder: (context, _) => appStateNotifier.loggedIn
+              ? entryPage ?? const LoginWidget()
+              : const WelcomeWidget(),
         ),
         FFRoute(
           name: 'Welcome',
@@ -104,6 +111,66 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'home',
           path: '/home',
           builder: (context, params) => const HomeWidget(),
+        ),
+        FFRoute(
+          name: 'settings',
+          path: '/settings',
+          builder: (context, params) => const SettingsWidget(),
+        ),
+        FFRoute(
+          name: 'taskcreation',
+          path: '/taskcreation',
+          builder: (context, params) => TaskcreationWidget(
+            date: params.getParam(
+              'date',
+              ParamType.DateTime,
+            ),
+          ),
+        ),
+        FFRoute(
+          name: 'autosavesettings',
+          path: '/autosavesettings',
+          builder: (context, params) => const AutosavesettingsWidget(),
+        ),
+        FFRoute(
+          name: 'settingsdisplay',
+          path: '/settingsdisplay',
+          builder: (context, params) => const SettingsdisplayWidget(),
+        ),
+        FFRoute(
+          name: 'profilesettings',
+          path: '/profilesettings',
+          builder: (context, params) => const ProfilesettingsWidget(),
+        ),
+        FFRoute(
+          name: 'settingsnotifpage',
+          path: '/settingsnotifpage',
+          builder: (context, params) => const SettingsnotifpageWidget(),
+        ),
+        FFRoute(
+          name: 'completed',
+          path: '/completed',
+          builder: (context, params) => const CompletedWidget(),
+        ),
+        FFRoute(
+          name: 'info',
+          path: '/info',
+          asyncParams: {
+            'transactions':
+                getDoc(['transactions'], TransactionsRecord.fromSnapshot),
+            'recurringTransactions': getDoc(['recurringTransactions'],
+                RecurringTransactionsRecord.fromSnapshot),
+          },
+          builder: (context, params) => InfoWidget(
+            transactions: params.getParam(
+              'transactions',
+              ParamType.Document,
+            ),
+            recurringTransactions: params.getParam(
+              'recurringTransactions',
+              ParamType.Document,
+            ),
+          ),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

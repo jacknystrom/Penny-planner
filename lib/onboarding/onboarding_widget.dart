@@ -1,4 +1,5 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
 import '/flutter_flow/flutter_flow_drop_down.dart';
@@ -8,6 +9,7 @@ import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'onboarding_model.dart';
 export 'onboarding_model.dart';
@@ -29,11 +31,14 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
     super.initState();
     _model = createModel(context, () => OnboardingModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'onboarding'});
     _model.nameTextController ??= TextEditingController();
     _model.nameFocusNode ??= FocusNode();
 
     _model.ageTextController ??= TextEditingController();
     _model.ageFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -46,7 +51,10 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -93,11 +101,13 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                 hoverColor: Colors.transparent,
                                 highlightColor: Colors.transparent,
                                 onTap: () async {
-                                  final selectedMedia =
-                                      await selectMediaWithSourceBottomSheet(
-                                    context: context,
-                                    maxWidth: 68.00,
-                                    allowPhoto: true,
+                                  logFirebaseEvent(
+                                      'ONBOARDING_PAGE_Stack_8xvujze6_ON_TAP');
+                                  logFirebaseEvent(
+                                      'Stack_upload_media_to_firebase');
+                                  final selectedMedia = await selectMedia(
+                                    mediaSource: MediaSource.photoGallery,
+                                    multiImage: false,
                                   );
                                   if (selectedMedia != null &&
                                       selectedMedia.every((m) =>
@@ -150,6 +160,8 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                     }
                                   }
 
+                                  logFirebaseEvent('Stack_backend_call');
+
                                   await currentUserReference!
                                       .update(createUsersRecordData(
                                     photoUrl: _model.uploadedFileUrl,
@@ -180,7 +192,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                           .primaryText,
                                       borderRadius: 20.0,
                                       buttonSize: 37.0,
-                                      fillColor: const Color(0xFFCAFFC6),
+                                      fillColor: const Color(0xFF67B296),
                                       icon: Icon(
                                         Icons.add,
                                         color: FlutterFlowTheme.of(context)
@@ -198,7 +210,15 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                 width: 400.0,
                                 height: 450.0,
                                 decoration: BoxDecoration(
-                                  color: const Color(0xFFBBBBBB),
+                                  gradient: const LinearGradient(
+                                    colors: [
+                                      Color(0x9967B296),
+                                      Color(0xC4267B5C)
+                                    ],
+                                    stops: [0.0, 1.0],
+                                    begin: AlignmentDirectional(0.0, -1.0),
+                                    end: AlignmentDirectional(0, 1.0),
+                                  ),
                                   borderRadius: BorderRadius.circular(24.0),
                                 ),
                                 child: Column(
@@ -366,15 +386,19 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                             .asValidator(context),
                                       ),
                                     ),
-                                    Text(
-                                      'What type of progress bar would you like for your challenges?',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                          ),
+                                    Padding(
+                                      padding: const EdgeInsets.all(2.0),
+                                      child: Text(
+                                        'What type of progress bar would you like for your challenges?',
+                                        textAlign: TextAlign.center,
+                                        style: FlutterFlowTheme.of(context)
+                                            .bodyLarge
+                                            .override(
+                                              fontFamily: 'Inter',
+                                              letterSpacing: 0.0,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                      ),
                                     ),
                                     FlutterFlowDropDown<String>(
                                       controller:
@@ -423,6 +447,7 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                           .override(
                                             fontFamily: 'Inter',
                                             letterSpacing: 0.0,
+                                            fontWeight: FontWeight.bold,
                                           ),
                                     ),
                                     FlutterFlowDropDown<String>(
@@ -480,15 +505,72 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                       alignment: const AlignmentDirectional(0.0, 1.0),
                       child: FFButtonWidget(
                         onPressed: () async {
+                          logFirebaseEvent(
+                              'ONBOARDING_COMPLETE_PROFILE_BTN_ON_TAP');
+                          logFirebaseEvent('Button_backend_call');
+
                           await currentUserReference!
                               .update(createUsersRecordData(
                             displayName: _model.nameTextController.text,
                             age: int.tryParse(_model.ageTextController.text),
                             typeOfIncome: _model.dropDownValue2,
                             preferredProgressBar: _model.dropDownValue1,
+                            nps: false,
                           ));
+                          logFirebaseEvent('Button_google_analytics_event');
+                          logFirebaseEvent('CllickThrough');
+                          logFirebaseEvent('Button_backend_call');
+                          _model.user = await UsersRecord.getDocumentOnce(
+                              currentUserReference!);
+                          logFirebaseEvent('Button_backend_call');
+
+                          await TransactionsRecord.collection
+                              .doc()
+                              .set(createTransactionsRecordData(
+                                uid: _model.user?.uid,
+                              ));
+                          logFirebaseEvent('Button_backend_call');
+
+                          await RecurringTransactionsRecord.collection
+                              .doc()
+                              .set(createRecurringTransactionsRecordData(
+                                uid: _model.user?.uid,
+                              ));
+                          logFirebaseEvent('Button_backend_call');
+                          _model.token = await GetLinkTokenCall.call(
+                            uid: currentUserUid,
+                          );
+
+                          logFirebaseEvent('Button_custom_action');
+                          await actions.initPlaidLink(
+                            context,
+                            GetLinkTokenCall.linkToken(
+                              (_model.token?.jsonBody ?? ''),
+                            )!,
+                            (publicToken) async {
+                              logFirebaseEvent('_backend_call');
+                              _model.apiResult3oi =
+                                  await GetAccessTokenCall.call(
+                                publicToken: publicToken,
+                              );
+
+                              if ((_model.apiResult3oi?.succeeded ?? true)) {
+                                logFirebaseEvent('_backend_call');
+
+                                await currentUserReference!
+                                    .update(createUsersRecordData(
+                                  accesToken: GetAccessTokenCall.accessToken(
+                                    (_model.apiResult3oi?.jsonBody ?? ''),
+                                  ).toString(),
+                                ));
+                              }
+                            },
+                          );
+                          logFirebaseEvent('Button_navigate_to');
 
                           context.pushNamed('home');
+
+                          safeSetState(() {});
                         },
                         text: 'Complete Profile',
                         options: FFButtonOptions(
@@ -498,13 +580,13 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                               16.0, 0.0, 16.0, 0.0),
                           iconPadding: const EdgeInsetsDirectional.fromSTEB(
                               0.0, 0.0, 0.0, 0.0),
-                          color: const Color(0xFFCAFFC6),
+                          color: const Color(0xCDFFFFFF),
                           textStyle:
                               FlutterFlowTheme.of(context).titleLarge.override(
                                     fontFamily: 'Inter Tight',
                                     letterSpacing: 0.0,
                                   ),
-                          elevation: 0.0,
+                          elevation: 5.0,
                           borderSide: BorderSide(
                             color: FlutterFlowTheme.of(context).primaryText,
                           ),

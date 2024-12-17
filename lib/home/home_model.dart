@@ -1,3 +1,5 @@
+import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'home_widget.dart' show HomeWidget;
 import 'package:flutter/material.dart';
@@ -5,31 +7,20 @@ import 'package:flutter/material.dart';
 class HomeModel extends FlutterFlowModel<HomeWidget> {
   ///  State fields for stateful widgets in this page.
 
-  // State field(s) for AmountSaved widget.
-  FocusNode? amountSavedFocusNode1;
-  TextEditingController? amountSavedTextController1;
-  String? Function(BuildContext, String?)? amountSavedTextController1Validator;
-  // State field(s) for AmountSaved widget.
-  FocusNode? amountSavedFocusNode2;
-  TextEditingController? amountSavedTextController2;
-  String? Function(BuildContext, String?)? amountSavedTextController2Validator;
-  // State field(s) for AmountSaved widget.
-  FocusNode? amountSavedFocusNode3;
-  TextEditingController? amountSavedTextController3;
-  String? Function(BuildContext, String?)? amountSavedTextController3Validator;
+  // Stores action output result for [Backend Call - Read Document] action in infoButton widget.
+  UsersRecord? user;
+  // Stores action output result for [Backend Call - API (getTransactions)] action in infoButton widget.
+  ApiCallResponse? newTransactions;
+  // Stores action output result for [Firestore Query - Query a collection] action in infoButton widget.
+  TransactionsRecord? transactions;
+  // Stores action output result for [Backend Call - API (getRecurringTransactions)] action in infoButton widget.
+  ApiCallResponse? rTransactions;
+  // Stores action output result for [Firestore Query - Query a collection] action in infoButton widget.
+  RecurringTransactionsRecord? recurring;
 
   @override
   void initState(BuildContext context) {}
 
   @override
-  void dispose() {
-    amountSavedFocusNode1?.dispose();
-    amountSavedTextController1?.dispose();
-
-    amountSavedFocusNode2?.dispose();
-    amountSavedTextController2?.dispose();
-
-    amountSavedFocusNode3?.dispose();
-    amountSavedTextController3?.dispose();
-  }
+  void dispose() {}
 }

@@ -1,7 +1,10 @@
 import '/auth/firebase_auth/auth_util.dart';
+import '/backend/api_requests/api_calls.dart';
+import '/backend/backend.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
+import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
 import 'login_model.dart';
 export 'login_model.dart';
@@ -23,11 +26,14 @@ class _LoginWidgetState extends State<LoginWidget> {
     super.initState();
     _model = createModel(context, () => LoginModel());
 
+    logFirebaseEvent('screen_view', parameters: {'screen_name': 'login'});
     _model.emailTextController ??= TextEditingController();
     _model.emailFocusNode ??= FocusNode();
 
     _model.passwordTextController ??= TextEditingController();
     _model.passwordFocusNode ??= FocusNode();
+
+    WidgetsBinding.instance.addPostFrameCallback((_) => safeSetState(() {}));
   }
 
   @override
@@ -40,7 +46,10 @@ class _LoginWidgetState extends State<LoginWidget> {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () => FocusScope.of(context).unfocus(),
+      onTap: () {
+        FocusScope.of(context).unfocus();
+        FocusManager.instance.primaryFocus?.unfocus();
+      },
       child: Scaffold(
         key: scaffoldKey,
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
@@ -81,7 +90,12 @@ class _LoginWidgetState extends State<LoginWidget> {
                         width: 400.0,
                         height: 400.0,
                         decoration: BoxDecoration(
-                          color: const Color(0xFFBBBBBB),
+                          gradient: const LinearGradient(
+                            colors: [Color(0xFF67B296), Color(0xFF267B5C)],
+                            stops: [0.0, 1.0],
+                            begin: AlignmentDirectional(0.0, -1.0),
+                            end: AlignmentDirectional(0, 1.0),
+                          ),
                           borderRadius: BorderRadius.circular(24.0),
                         ),
                         child: Column(
@@ -90,6 +104,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                             SizedBox(
                               width: 200.0,
                               child: TextFormField(
+                                key: const ValueKey('Email_d4q4'),
                                 controller: _model.emailTextController,
                                 focusNode: _model.emailFocusNode,
                                 autofocus: false,
@@ -98,9 +113,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   isDense: true,
                                   labelText: 'Email',
                                   labelStyle: FlutterFlowTheme.of(context)
-                                      .labelMedium
+                                      .titleSmall
                                       .override(
-                                        fontFamily: 'Inter',
+                                        fontFamily: 'Inter Tight',
                                         letterSpacing: 0.0,
                                       ),
                                   hintText: ' ',
@@ -160,6 +175,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 SizedBox(
                                   width: 200.0,
                                   child: TextFormField(
+                                    key: const ValueKey('Password_tlj5'),
                                     controller: _model.passwordTextController,
                                     focusNode: _model.passwordFocusNode,
                                     autofocus: false,
@@ -168,9 +184,9 @@ class _LoginWidgetState extends State<LoginWidget> {
                                       isDense: true,
                                       labelText: 'Password',
                                       labelStyle: FlutterFlowTheme.of(context)
-                                          .labelMedium
+                                          .titleSmall
                                           .override(
-                                            fontFamily: 'Inter',
+                                            fontFamily: 'Inter Tight',
                                             letterSpacing: 0.0,
                                           ),
                                       hintText: ' ',
@@ -245,49 +261,61 @@ class _LoginWidgetState extends State<LoginWidget> {
                                         .asValidator(context),
                                   ),
                                 ),
-                                FFButtonWidget(
-                                  onPressed: () async {
-                                    if (_model
-                                        .emailTextController.text.isEmpty) {
-                                      ScaffoldMessenger.of(context)
-                                          .showSnackBar(
-                                        const SnackBar(
-                                          content: Text(
-                                            'Email required!',
+                                Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: FFButtonWidget(
+                                    onPressed: () async {
+                                      logFirebaseEvent(
+                                          'LOGIN_PAGE_ForgotPassword_ON_TAP');
+                                      logFirebaseEvent('ForgotPassword_auth');
+                                      if (_model
+                                          .emailTextController.text.isEmpty) {
+                                        ScaffoldMessenger.of(context)
+                                            .showSnackBar(
+                                          const SnackBar(
+                                            content: Text(
+                                              'Email required!',
+                                            ),
                                           ),
-                                        ),
+                                        );
+                                        return;
+                                      }
+                                      await authManager.resetPassword(
+                                        email: _model.emailTextController.text,
+                                        context: context,
                                       );
-                                      return;
-                                    }
-                                    await authManager.resetPassword(
-                                      email: _model.emailTextController.text,
-                                      context: context,
-                                    );
-                                  },
-                                  text: 'Forgot Password?',
-                                  options: FFButtonOptions(
-                                    height: 40.0,
-                                    padding: const EdgeInsetsDirectional.fromSTEB(
-                                        16.0, 0.0, 16.0, 0.0),
-                                    iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                                        0.0, 0.0, 0.0, 0.0),
-                                    color: const Color(0xFFBBBBBB),
-                                    textStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .override(
-                                          fontFamily: 'Inter Tight',
-                                          color: FlutterFlowTheme.of(context)
-                                              .primary,
-                                          letterSpacing: 0.0,
-                                        ),
-                                    elevation: 0.0,
-                                    borderRadius: BorderRadius.circular(8.0),
+                                    },
+                                    text: 'Forgot Password?',
+                                    options: FFButtonOptions(
+                                      height: 40.0,
+                                      padding: const EdgeInsetsDirectional.fromSTEB(
+                                          16.0, 0.0, 16.0, 0.0),
+                                      iconPadding:
+                                          const EdgeInsetsDirectional.fromSTEB(
+                                              0.0, 0.0, 0.0, 0.0),
+                                      color: const Color(0xABFFFFFF),
+                                      textStyle: FlutterFlowTheme.of(context)
+                                          .titleSmall
+                                          .override(
+                                            fontFamily: 'Inter Tight',
+                                            color: FlutterFlowTheme.of(context)
+                                                .primary,
+                                            letterSpacing: 0.0,
+                                          ),
+                                      elevation: 5.0,
+                                      borderRadius: BorderRadius.circular(8.0),
+                                    ),
                                   ),
                                 ),
                               ],
                             ),
                             FFButtonWidget(
+                              key: const ValueKey('LoginButton_hod7'),
                               onPressed: () async {
+                                logFirebaseEvent(
+                                    'LOGIN_PAGE_LoginButton_ON_TAP');
+                                var shouldSetState = false;
+                                logFirebaseEvent('LoginButton_auth');
                                 GoRouter.of(context).prepareAuthEvent();
 
                                 final user = await authManager.signInWithEmail(
@@ -299,7 +327,59 @@ class _LoginWidgetState extends State<LoginWidget> {
                                   return;
                                 }
 
+                                logFirebaseEvent('LoginButton_backend_call');
+                                await CheckAccessCall.call(
+                                  accessToken: valueOrDefault(
+                                      currentUserDocument?.accesToken, ''),
+                                );
+
+                                if ((_model.token?.succeeded ?? true)) {
+                                  logFirebaseEvent('LoginButton_navigate_to');
+
+                                  context.pushNamedAuth(
+                                      'home', context.mounted);
+
+                                  if (shouldSetState) safeSetState(() {});
+                                  return;
+                                }
+                                logFirebaseEvent('LoginButton_backend_call');
+                                _model.token = await GetLinkTokenCall.call(
+                                  uid: currentUserUid,
+                                );
+
+                                shouldSetState = true;
+                                logFirebaseEvent('LoginButton_custom_action');
+                                await actions.initPlaidLink(
+                                  context,
+                                  GetLinkTokenCall.linkToken(
+                                    (_model.token?.jsonBody ?? ''),
+                                  )!,
+                                  (publicToken) async {
+                                    logFirebaseEvent('_backend_call');
+                                    _model.apiResult3oi =
+                                        await GetAccessTokenCall.call(
+                                      publicToken: publicToken,
+                                    );
+
+                                    if ((_model.apiResult3oi?.succeeded ??
+                                        true)) {
+                                      logFirebaseEvent('_backend_call');
+
+                                      await currentUserReference!
+                                          .update(createUsersRecordData(
+                                        accesToken:
+                                            GetAccessTokenCall.accessToken(
+                                          (_model.apiResult3oi?.jsonBody ?? ''),
+                                        ).toString(),
+                                      ));
+                                    }
+                                  },
+                                );
+                                logFirebaseEvent('LoginButton_navigate_to');
+
                                 context.goNamedAuth('home', context.mounted);
+
+                                if (shouldSetState) safeSetState(() {});
                               },
                               text: 'Log In',
                               options: FFButtonOptions(
@@ -308,7 +388,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                     16.0, 0.0, 16.0, 0.0),
                                 iconPadding: const EdgeInsetsDirectional.fromSTEB(
                                     0.0, 0.0, 0.0, 0.0),
-                                color: const Color(0xFFCAFFC6),
+                                color: const Color(0xAEFFFFFF),
                                 textStyle: FlutterFlowTheme.of(context)
                                     .titleSmall
                                     .override(
@@ -317,10 +397,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                                           .primaryText,
                                       letterSpacing: 0.0,
                                     ),
-                                elevation: 0.0,
-                                borderSide: const BorderSide(
-                                  color: Colors.black,
-                                ),
+                                elevation: 5.0,
                                 borderRadius: BorderRadius.circular(8.0),
                               ),
                             ),
@@ -331,6 +408,10 @@ class _LoginWidgetState extends State<LoginWidget> {
                       ),
                       FFButtonWidget(
                         onPressed: () async {
+                          logFirebaseEvent(
+                              'LOGIN_PAGE_DontHaveanAccount_ON_TAP');
+                          logFirebaseEvent('DontHaveanAccount_navigate_to');
+
                           context.pushNamed('signuppage');
                         },
                         text: 'Don\'t Have An Account?',

@@ -1,4 +1,4 @@
-package com.mycompany.pennyplanner
+package com.uricsc305.BrokeLess
 
 import io.flutter.embedding.android.FlutterActivity
 

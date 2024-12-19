@@ -2,12 +2,10 @@ import '/auth/firebase_auth/auth_util.dart';
 import '/backend/api_requests/api_calls.dart';
 import '/backend/backend.dart';
 import '/backend/firebase_storage/storage.dart';
-import '/flutter_flow/flutter_flow_drop_down.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
-import '/flutter_flow/form_field_controller.dart';
 import '/flutter_flow/upload_data.dart';
 import '/custom_code/actions/index.dart' as actions;
 import 'package:flutter/material.dart';
@@ -387,109 +385,17 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                                       ),
                                     ),
                                     Padding(
-                                      padding: const EdgeInsets.all(2.0),
+                                      padding: const EdgeInsets.all(10.0),
                                       child: Text(
-                                        'What type of progress bar would you like for your challenges?',
-                                        textAlign: TextAlign.center,
+                                        'On the following screen you will be asked to sign in to your bank account. For whatever bank you choose the username will be \"user_good\", the password will be \"pass_good\" and the 2-factor authentication will be \"1234\".',
                                         style: FlutterFlowTheme.of(context)
-                                            .bodyLarge
+                                            .bodyMedium
                                             .override(
                                               fontFamily: 'Inter',
+                                              fontSize: 16.0,
                                               letterSpacing: 0.0,
-                                              fontWeight: FontWeight.bold,
                                             ),
                                       ),
-                                    ),
-                                    FlutterFlowDropDown<String>(
-                                      controller:
-                                          _model.dropDownValueController1 ??=
-                                              FormFieldController<String>(null),
-                                      options: const [
-                                        'Graph',
-                                        'Pie Chart',
-                                        'Percent Bar'
-                                      ],
-                                      onChanged: (val) => safeSetState(
-                                          () => _model.dropDownValue1 = val),
-                                      width: 200.0,
-                                      height: 40.0,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintText: 'Select...',
-                                      icon: Icon(
-                                        Icons.keyboard_arrow_down_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
-                                      ),
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      elevation: 2.0,
-                                      borderColor: Colors.transparent,
-                                      borderWidth: 0.0,
-                                      borderRadius: 8.0,
-                                      margin: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 0.0, 12.0, 0.0),
-                                      hidesUnderline: true,
-                                      isOverButton: false,
-                                      isSearchable: false,
-                                      isMultiSelect: false,
-                                    ),
-                                    Text(
-                                      'What type of income do you receive?',
-                                      textAlign: TextAlign.center,
-                                      style: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                            fontWeight: FontWeight.bold,
-                                          ),
-                                    ),
-                                    FlutterFlowDropDown<String>(
-                                      controller:
-                                          _model.dropDownValueController2 ??=
-                                              FormFieldController<String>(null),
-                                      options: const [
-                                        'Salary',
-                                        'Biweekly',
-                                        'Weekly',
-                                        'Allowance',
-                                        'Frelance'
-                                      ],
-                                      onChanged: (val) => safeSetState(
-                                          () => _model.dropDownValue2 = val),
-                                      width: 200.0,
-                                      height: 40.0,
-                                      textStyle: FlutterFlowTheme.of(context)
-                                          .bodyMedium
-                                          .override(
-                                            fontFamily: 'Inter',
-                                            letterSpacing: 0.0,
-                                          ),
-                                      hintText: 'Select...',
-                                      icon: Icon(
-                                        Icons.keyboard_arrow_down_rounded,
-                                        color: FlutterFlowTheme.of(context)
-                                            .secondaryText,
-                                        size: 24.0,
-                                      ),
-                                      fillColor: FlutterFlowTheme.of(context)
-                                          .secondaryBackground,
-                                      elevation: 2.0,
-                                      borderColor: Colors.transparent,
-                                      borderWidth: 0.0,
-                                      borderRadius: 8.0,
-                                      margin: const EdgeInsetsDirectional.fromSTEB(
-                                          12.0, 0.0, 12.0, 0.0),
-                                      hidesUnderline: true,
-                                      isOverButton: false,
-                                      isSearchable: false,
-                                      isMultiSelect: false,
                                     ),
                                   ]
                                       .divide(const SizedBox(height: 40.0))
@@ -513,8 +419,6 @@ class _OnboardingWidgetState extends State<OnboardingWidget> {
                               .update(createUsersRecordData(
                             displayName: _model.nameTextController.text,
                             age: int.tryParse(_model.ageTextController.text),
-                            typeOfIncome: _model.dropDownValue2,
-                            preferredProgressBar: _model.dropDownValue1,
                             nps: false,
                           ));
                           logFirebaseEvent('Button_google_analytics_event');

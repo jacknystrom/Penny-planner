@@ -80,7 +80,7 @@ class _SignuppageWidgetState extends State<SignuppageWidget> {
                     height: 500.0,
                     decoration: BoxDecoration(
                       gradient: const LinearGradient(
-                        colors: [Color(0xFF8CB297), Color(0xFF639B74)],
+                        colors: [Color(0xFF67B296), Color(0xFF267B5C)],
                         stops: [0.0, 1.0],
                         begin: AlignmentDirectional(0.0, -1.0),
                         end: AlignmentDirectional(0, 1.0),

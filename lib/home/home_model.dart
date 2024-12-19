@@ -17,6 +17,10 @@ class HomeModel extends FlutterFlowModel<HomeWidget> {
   ApiCallResponse? rTransactions;
   // Stores action output result for [Firestore Query - Query a collection] action in infoButton widget.
   RecurringTransactionsRecord? recurring;
+  // Stores action output result for [Backend Call - Read Document] action in infoButton widget.
+  TransactionsRecord? finalT;
+  // Stores action output result for [Backend Call - Read Document] action in infoButton widget.
+  RecurringTransactionsRecord? finalR;
 
   @override
   void initState(BuildContext context) {}

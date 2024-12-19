@@ -116,7 +116,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                             16.0, 0.0, 16.0, 0.0),
                         iconPadding:
                             const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                        color: const Color(0xBFFFFFFF),
+                        color: const Color(0xF1FFFFFF),
                         textStyle: FlutterFlowTheme.of(context)
                             .titleSmall
                             .override(
@@ -204,7 +204,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                       },
                       text: 'Create',
                       options: FFButtonOptions(
-                        width: MediaQuery.sizeOf(context).width * 0.41,
                         height: 40.0,
                         padding: const EdgeInsetsDirectional.fromSTEB(
                             16.0, 0.0, 16.0, 0.0),
@@ -216,7 +215,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                             .override(
                               fontFamily: 'Inter Tight',
                               color: FlutterFlowTheme.of(context).primaryText,
-                              fontSize: 14.0,
+                              fontSize: 20.0,
                               letterSpacing: 0.0,
                             ),
                         elevation: 5.0,
@@ -226,6 +225,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                     Align(
                       alignment: const AlignmentDirectional(-1.0, 0.0),
                       child: FFButtonWidget(
+                        key: const ValueKey('infoButton_i5al'),
                         onPressed: () async {
                           logFirebaseEvent('HOME_PAGE_infoButton_ON_TAP');
                           var shouldSetState = false;
@@ -325,23 +325,33 @@ class _HomeWidgetState extends State<HomeWidget> {
                               },
                             ),
                           });
+                          logFirebaseEvent('infoButton_backend_call');
+                          _model.finalT =
+                              await TransactionsRecord.getDocumentOnce(
+                                  _model.transactions!.reference);
+                          shouldSetState = true;
+                          logFirebaseEvent('infoButton_backend_call');
+                          _model.finalR =
+                              await RecurringTransactionsRecord.getDocumentOnce(
+                                  _model.recurring!.reference);
+                          shouldSetState = true;
                           logFirebaseEvent('infoButton_navigate_to');
 
                           context.pushNamed(
                             'info',
                             queryParameters: {
                               'transactions': serializeParam(
-                                _model.transactions,
+                                _model.finalT,
                                 ParamType.Document,
                               ),
                               'recurringTransactions': serializeParam(
-                                _model.recurring,
+                                _model.finalR,
                                 ParamType.Document,
                               ),
                             }.withoutNulls,
                             extra: <String, dynamic>{
-                              'transactions': _model.transactions,
-                              'recurringTransactions': _model.recurring,
+                              'transactions': _model.finalT,
+                              'recurringTransactions': _model.finalR,
                             },
                           );
 
@@ -349,7 +359,6 @@ class _HomeWidgetState extends State<HomeWidget> {
                         },
                         text: 'Info',
                         options: FFButtonOptions(
-                          width: MediaQuery.sizeOf(context).width * 0.42,
                           height: 40.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
                               16.0, 0.0, 16.0, 0.0),
@@ -361,7 +370,7 @@ class _HomeWidgetState extends State<HomeWidget> {
                               .override(
                                 fontFamily: 'Inter Tight',
                                 color: FlutterFlowTheme.of(context).primaryText,
-                                fontSize: 14.0,
+                                fontSize: 20.0,
                                 letterSpacing: 0.0,
                               ),
                           elevation: 5.0,

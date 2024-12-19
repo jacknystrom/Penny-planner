@@ -2,7 +2,6 @@ import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:integration_test/integration_test.dart';
-import 'package:broke_less/flutter_flow/flutter_flow_drop_down.dart';
 import 'package:broke_less/flutter_flow/flutter_flow_icon_button.dart';
 import 'package:broke_less/flutter_flow/flutter_flow_widgets.dart';
 import 'package:broke_less/flutter_flow/flutter_flow_theme.dart';
@@ -25,35 +24,41 @@ void main() async {
     await authManager.signOut();
   });
 
-  testWidgets('Correct Email and Password', (WidgetTester tester) async {
+  testWidgets('US1 Correct Email and Password', (WidgetTester tester) async {
     _overrideOnError();
 
     await tester.pumpWidget(MyApp());
 
+    await tester.tap(find.byKey(ValueKey('Welcome_kb72')));
     await tester.enterText(
         find.byKey(ValueKey('Email_d4q4')), 'gdrouin@uri.edu');
     await tester.enterText(find.byKey(ValueKey('Password_tlj5')), 't1gGer654!');
     await tester.tap(find.byKey(ValueKey('LoginButton_hod7')));
-    expect(find.byKey(ValueKey('UNDEFINED')), findsOneWidget);
+    expect(find.text('Total Points'), findsOneWidget);
   });
 
-  testWidgets('US2 User Login', (WidgetTester tester) async {
+  testWidgets('US5 transaction info displayed', (WidgetTester tester) async {
     _overrideOnError();
 
-    await tester.pumpWidget(MyApp());
+    await tester.pumpWidget(MyApp(
+      entryPage: WelcomeWidget(),
+    ));
 
     await tester.tap(find.byKey(ValueKey('HomeLogin_vs9z')));
     await tester.enterText(
-        find.byKey(ValueKey('Email_d4q4')), 'afranci12@uri.edu');
+        find.byKey(ValueKey('Email_d4q4')), 'jack_nystrom@uri.edu');
     FocusManager.instance.primaryFocus?.unfocus();
-    await tester.enterText(find.byKey(ValueKey('Password_tlj5')), 'af1243336');
+    await tester.enterText(
+        find.byKey(ValueKey('Password_tlj5')), '@Nintendo20');
     FocusManager.instance.primaryFocus?.unfocus();
     await tester.tap(find.byKey(ValueKey('LoginButton_hod7')));
     await tester.pumpAndSettle(Duration(milliseconds: 3000));
-    expect(find.text('Set up your profile'), findsWidgets);
+    await tester.tap(find.byKey(ValueKey('infoButton_i5al')));
+    await tester.pumpAndSettle(Duration(milliseconds: 10000));
+    expect(find.byKey(ValueKey('ListView_wtil')), findsWidgets);
   });
 
-  testWidgets('US1 Account Creation', (WidgetTester tester) async {
+  testWidgets('US2 Account Creation', (WidgetTester tester) async {
     _overrideOnError();
 
     await tester.pumpWidget(MyApp());

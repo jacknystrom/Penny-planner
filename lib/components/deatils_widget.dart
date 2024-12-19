@@ -57,8 +57,19 @@ class _DeatilsWidgetState extends State<DeatilsWidget> {
       child: Container(
         width: 380.0,
         height: 575.0,
-        decoration: BoxDecoration(
-          color: FlutterFlowTheme.of(context).secondaryBackground,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            colors: [Colors.white, Color(0xFFBDBDBD)],
+            stops: [0.0, 1.0],
+            begin: AlignmentDirectional(0.0, -1.0),
+            end: AlignmentDirectional(0, 1.0),
+          ),
+          borderRadius: BorderRadius.only(
+            bottomLeft: Radius.circular(20.0),
+            bottomRight: Radius.circular(20.0),
+            topLeft: Radius.circular(20.0),
+            topRight: Radius.circular(20.0),
+          ),
         ),
         child: Column(
           mainAxisSize: MainAxisSize.max,
@@ -169,7 +180,7 @@ class _DeatilsWidgetState extends State<DeatilsWidget> {
                               filled: true,
                               fillColor: FlutterFlowTheme.of(context)
                                   .secondaryBackground,
-                              hoverColor: Colors.black,
+                              hoverColor: const Color(0xFFC5C5C5),
                             ),
                             style: FlutterFlowTheme.of(context)
                                 .titleLarge
@@ -271,7 +282,7 @@ class _DeatilsWidgetState extends State<DeatilsWidget> {
               ],
             ),
             Padding(
-              padding: const EdgeInsets.all(20.0),
+              padding: const EdgeInsets.all(2.0),
               child: Row(
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -407,11 +418,11 @@ class _DeatilsWidgetState extends State<DeatilsWidget> {
                         0.0,
                       ),
                       width: 175.0,
-                      lineHeight: 25.0,
+                      lineHeight: 30.0,
                       animation: true,
                       animateFromLastPercent: true,
-                      progressColor: FlutterFlowTheme.of(context).primary,
-                      backgroundColor: FlutterFlowTheme.of(context).accent4,
+                      progressColor: const Color(0xFF36AE8C),
+                      backgroundColor: const Color(0xCCCBCBCB),
                       center: Text(
                         valueOrDefault<String>(
                           functions.progressBarPercent(
@@ -431,6 +442,7 @@ class _DeatilsWidgetState extends State<DeatilsWidget> {
                                   letterSpacing: 0.0,
                                 ),
                       ),
+                      barRadius: const Radius.circular(10.0),
                       padding: EdgeInsets.zero,
                     ),
                   ],
@@ -527,7 +539,7 @@ class _DeatilsWidgetState extends State<DeatilsWidget> {
                   options: FFButtonOptions(
                     height: 40.0,
                     padding:
-                        const EdgeInsetsDirectional.fromSTEB(16.0, 0.0, 16.0, 0.0),
+                        const EdgeInsetsDirectional.fromSTEB(16.0, 10.0, 16.0, 10.0),
                     iconPadding:
                         const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
                     color: const Color(0xFF267B5C),
@@ -567,7 +579,7 @@ class _DeatilsWidgetState extends State<DeatilsWidget> {
                     borderRadius: BorderRadius.circular(8.0),
                   ),
                 ),
-              ],
+              ].divide(const SizedBox(height: 10.0)),
             ),
           ].divide(const SizedBox(height: 5.0)),
         ),

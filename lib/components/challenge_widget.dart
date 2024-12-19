@@ -1,3 +1,4 @@
+import '/auth/firebase_auth/auth_util.dart';
 import '/backend/backend.dart';
 import '/components/deatils_widget.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
@@ -48,6 +49,15 @@ class _ChallengeWidgetState extends State<ChallengeWidget> {
         logFirebaseEvent('Challenge_execute_callback');
         await widget.completed?.call();
         if (!widget.document!.pointsadded) {
+          logFirebaseEvent('Challenge_backend_call');
+
+          await currentUserReference!.update({
+            ...mapToFirestore(
+              {
+                'userPoints': FieldValue.increment(15.0),
+              },
+            ),
+          });
           logFirebaseEvent('Challenge_backend_call');
 
           await widget.document!.reference.update(createTasksRecordData(
